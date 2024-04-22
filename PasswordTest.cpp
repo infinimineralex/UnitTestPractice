@@ -110,3 +110,27 @@ TEST(PasswordTest, large_mixer_tricky4)
 	bool actual = my_password.has_mixed_case("!!...!!");
 	ASSERT_EQ(false, actual);
 }
+
+TEST(PasswordTest, set1) 
+{
+	Password my_password;
+	my_password.set("Abcdefghi");
+	bool actual = my_password.authenticate("Abcdefghi");
+	ASSERT_EQ(true, actual);
+}
+
+TEST(PasswordTest, combined1) 
+{
+	Password my_password;
+	my_password.set("Abcdefghi");
+	bool actual = my_password.authenticate("Abcdefghi");
+	ASSERT_EQ(true, actual);
+}
+
+TEST(PasswordTest, combined2) 
+{
+	Password my_password;
+	my_password.set("abcdefghi");
+	bool actual = my_password.authenticate("abcdefghi");
+	ASSERT_EQ(false, actual);
+}

@@ -20,17 +20,45 @@ int Password::count_leading_characters(string phrase){
   return repetition;
 }
 
+Password::Password(){
+  pass_history.push_back("ChicoCA-95929");
+}
+
+
+
 bool Password::has_mixed_case(string word){
-  bool upper=false;
-  bool lower=false;
-  for(char w : word){
-    if(isupper(w)){
-      upper=true;
-    } else if (islower(w)){
-      lower=true;
+
+  bool found = false;
+  for(char c : word){
+    if( !found && c >= 'A' && c <= 'Z' ){
+      found = true;
+    }
+    else if( found && c >= 'a' && c <= 'z'){
+      return true;
     }
   }
-  if (lower && upper){
+  return false;
+
+}
+
+void Password::set(string word){
+  if(word.size() >= 8 && word.size() <= 20) {
+    if(count_leading_characters(word) <= 3){
+      if(has_mixed_case(word)){
+        for(auto i : pass_history){
+          if(i == word){
+            return;
+          }
+        }
+          pass_history.push_back(word);
+      }
+    }  
+  }
+  
+}
+
+bool Password::authenticate(string word){
+  if(pass_history.back() == word){
     return true;
   }
   return false;
