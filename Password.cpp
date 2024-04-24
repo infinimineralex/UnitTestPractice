@@ -1,8 +1,6 @@
 #include "Password.h"
 #include <string>
-
 using std::string;
-
 /*
   The function receives a string counts how many times the same character 
   occurs at the beginning of the string, before any other characters (or the
@@ -19,15 +17,10 @@ int Password::count_leading_characters(string phrase){
   }
   return repetition;
 }
-
 Password::Password(){
   pass_history.push_back("ChicoCA-95929");
 }
-
-
-
 bool Password::has_mixed_case(string word){
-
   bool found = false;
   for(char c : word){
     if( !found && c >= 'A' && c <= 'Z' ){
@@ -38,9 +31,7 @@ bool Password::has_mixed_case(string word){
     }
   }
   return false;
-
 }
-
 void Password::set(string word){
   if(word.size() >= 8 && word.size() <= 20) {
     if(count_leading_characters(word) <= 3){
@@ -54,7 +45,6 @@ void Password::set(string word){
       }
     }  
   }
-  
 }
 
 bool Password::authenticate(string word){

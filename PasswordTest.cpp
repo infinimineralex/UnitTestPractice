@@ -134,3 +134,55 @@ TEST(PasswordTest, combined2)
 	bool actual = my_password.authenticate("abcdefghi");
 	ASSERT_EQ(false, actual);
 }
+
+TEST(PasswordTest, combined3) 
+{
+	Password my_password;
+	my_password.set("");
+	bool actual = my_password.authenticate("");
+	ASSERT_EQ(false, actual);
+}
+TEST(PasswordTest, combined4) 
+{
+	Password my_password;
+	bool actual = my_password.authenticate("ChicoCA-95929");
+	ASSERT_EQ(true, actual);
+}
+TEST(PasswordTest, combined5) 
+{
+	Password my_password;
+	my_password.set("abcdefghi");
+	my_password.set("ChicoCA-95929");
+	bool actual = my_password.authenticate("ChicoCA-95929");
+	
+	ASSERT_EQ(true, actual);
+}
+
+TEST(PasswordTest, combined6) 
+{
+	Password my_password;
+	my_password.set("abc");
+	bool actual = my_password.authenticate("abc");
+	ASSERT_EQ(false, actual);
+}
+TEST(PasswordTest, combined7) 
+{
+	Password my_password;
+	my_password.set("abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc");
+	bool actual = my_password.authenticate("abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc");
+	ASSERT_EQ(false, actual);
+}
+TEST(PasswordTest, combined8) 
+{
+	Password my_password;
+	my_password.set("aaaaaaAaaaaa");
+	bool actual = my_password.authenticate("aaaaaaAaaaaa");
+	ASSERT_EQ(false, actual);
+}
+TEST(PasswordTest, combined9) 
+{
+	Password my_password;
+	my_password.set("aaaaaaaaaaaa");
+	bool actual = my_password.authenticate("aaaaaaaaaaaa");
+	ASSERT_EQ(false, actual);
+}
